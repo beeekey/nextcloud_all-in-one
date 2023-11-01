@@ -23,6 +23,7 @@ services:
       - "traefik.http.middlewares.nextcloud-chain.chain.middlewares=nextcloud-secure-headers"
 #      - "traefik.http.middlewares.nextcloud-dav.replacepathregex.regex=^/.well-known/ca(l|rd)dav"
 #      - "traefik.http.middlewares.nextcloud-dav.replacepathregex.replacement=/remote.php/dav/"
+#      -
       - "traefik.http.routers.nextcloud_admin.entrypoints=websecure"
       - "traefik.http.routers.nextcloud_admin.rule=(Host(`nc.tuko.li`))"
       - "traefik.http.routers.nextcloud_admin.tls=true"
@@ -32,6 +33,26 @@ services:
       - "traefik.http.services.nextcloud_admin.loadbalancer.server.port=8080"
 #      - "traefik.http.services.nextcloud.loadbalancer.server.url=https://192.168.0.177:443"
       - "traefik.http.services.nextcloud_admin.loadbalancer.server.scheme=https"
+#      -
+      - "traefik.http.routers.nextcloud_2.entrypoints=websecure"
+      - "traefik.http.routers.nextcloud_2.rule=(Host(`nc.tuko.li`))"
+      - "traefik.http.routers.nextcloud_2.tls=true"
+      - "traefik.http.routers.nextcloud_2.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.nextcloud_2.service=nextcloud_2"
+      - "traefik.http.routers.nextcloud_2.middlewares=nextcloud-chain"
+      - "traefik.http.services.nextcloud_2.loadbalancer.server.port=80"
+#      - "traefik.http.services.nextcloud.loadbalancer.server.url=https://192.168.0.177:443"
+      - "traefik.http.services.nextcloud_2.loadbalancer.server.scheme=https"
+#      -
+      - "traefik.http.routers.nextcloud_3.entrypoints=websecure"
+      - "traefik.http.routers.nextcloud_3.rule=(Host(`nc.tuko.li`))"
+      - "traefik.http.routers.nextcloud_3.tls=true"
+      - "traefik.http.routers.nextcloud_3.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.nextcloud_3.service=nextcloud_3"
+      - "traefik.http.routers.nextcloud_3.middlewares=nextcloud-chain"
+      - "traefik.http.services.nextcloud_3.loadbalancer.server.port=11000"
+#      - "traefik.http.services.nextcloud.loadbalancer.server.url=https://192.168.0.177:443"
+      - "traefik.http.services.nextcloud_3.loadbalancer.server.scheme=https"
     image: nextcloud/all-in-one:latest
     init: true
     restart: always
