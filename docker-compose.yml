@@ -60,7 +60,7 @@ services:
       - "traefik.http.routers.nextcloud.tls.certresolver=certificato"
       - "traefik.http.routers.nextcloud.tls.domains[0].main=*.tuko.li"
       - "traefik.http.routers.nextcloud.service=nextclouddService"
-      - "traefik.http.services.nextclouddService.loadBalancer.server.port=80"
+      - "traefik.http.services.nextclouddService.loadBalancer.server.port=11000"
       - "traefik.http.routers.nextcloud.middlewares=nc-rep,nc-header"
       - "traefik.http.middlewares.nc-rep.redirectregex.regex=https://(.*)/.well-known/(card|cal)dav"
       - "traefik.http.middlewares.nc-rep.redirectregex.replacement=https://$$1/remote.php/dav/"
@@ -109,8 +109,6 @@ services:
       # - NEXTCLOUD_KEEP_DISABLED_APPS=false # Setting this to true will keep Nextcloud apps that are disabled in the AIO interface and not uninstall them if they should be installed. See https://github.com/nextcloud/all-in-one#how-to-keep-disabled-apps
       # - TALK_PORT=3478 # This allows to adjust the port that the talk container is using. See https://github.com/nextcloud/all-in-one#how-to-adjust-the-talk-port
       # - WATCHTOWER_DOCKER_SOCKET_PATH=/var/run/docker.sock # Needs to be specified if the docker socket on the host is not located in the default '/var/run/docker.sock'. Otherwise mastercontainer updates will fail. For macos it needs to be '/var/run/docker.sock'
-      - NEXTCLOUD_TRUSTED_DOMAINS=nc.tuko.li
-      - APACHE_DISABLE_REWRITE_IP=1
       - OVERWRITEPROTOCOL=https
       # networks: # Is needed when you want to create the nextcloud-aio network with ipv6-support using this file, see the network config at the bottom of the file
       # - nextcloud-aio # Is needed when you want to create the nextcloud-aio network with ipv6-support using this file, see the network config at the bottom of the file
