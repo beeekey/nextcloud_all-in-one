@@ -55,7 +55,7 @@ services:
 #      - "traefik.http.services.nextcloud_3.loadbalancer.server.scheme=https"
       - 'traefik.enable=true'
       - 'traefik.http.routers.nextcloud.rule=Host(`nc.tuko.li`)'
-      - 'traefik.http.routers.nextcloud.entrypoints=web-secure'
+      - 'traefik.http.routers.nextcloud.entrypoints=websecure'
       - 'traefik.http.routers.nextcloud.tls=true'
       - "traefik.http.routers.nextcloud.tls.certresolver=certificato"
       - "traefik.http.routers.nextcloud.tls.domains[0].main=*.tuko.li"
